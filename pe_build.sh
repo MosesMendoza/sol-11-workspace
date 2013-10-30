@@ -1,28 +1,29 @@
-BASEDIR="$HOME/pe"
+BASEDIR="${HOME}/pe"
 PREFIX="/opt/puppet"
-PATH="/opt/gcc-sparc/bin:/usr/local/bin:$PATH"
+PATH="/opt/gcc-sparc/bin:/usr/local/bin:${PATH}"
+CROSSGCCLIBS="/opt/gcc-sparc/sparc-sun-solaris2.11/lib"
 
 CC="/opt/gcc-sparc/bin/sparc-sun-solaris2.11-gcc"
 CFLAGS="-I${PREFIX}/include"
-LDFLAGS="-L/opt/gcc-sparc/sparc-sun-solaris2.11/lib"
-LDFLAGS="${LDFLAGS} -Wl,-rpath-link,/opt/gcc-sparc/sparc-sun-solaris2.11/lib"
+LDFLAGS="-L${CROSSGCCLIBS} \
+         -Wl,-rpath-link,${CROSSGCCLIBS} \
+         -Wl,-rpath,${PREFIX}/lib"
 
 export LDFLAGS PREFIX PATH CFLAGS CC
 
 echo "LDFLAGS is $LDFLAGS"
 echo "CFLAGS is $CFLAGS"
 
-
 clean(){
   echo "cleaning"
-  sudo rm -rf $BASEDIR/build/augeas/*
-  sudo rm -rf $PREFIX/*
+  sudo rm -rf ${BASEDIR}/build/augeas/*
+  sudo rm -rf ${PREFIX}/*
   echo "done"
 }
 
 patch(){
   echo "patching"
-  pushd $BASEDIR/unpacked/augeas-1.1.0
+  pushd ${BASEDIR}/unpacked/augeas-1.1.0
     /usr/bin/gsed -i 's,Cflags: -I${includedir},Cflags: -I${includedir} -I/usr/include/libxml2,g' augeas.pc.in
   popd
   echo "done"
@@ -38,8 +39,8 @@ sysunprep(){
 
 build_augeas(){
   echo "building augeas"
-  pushd $BASEDIR/build/augeas
-    $BASEDIR/unpacked/augeas-1.1.0/configure --prefix=$PREFIX \
+  pushd ${BASEDIR}/build/augeas
+    ${BASEDIR}/unpacked/augeas-1.1.0/configure --prefix=${PREFIX} \
                                              --host="sparc-sun-solaris2.11" \
                                              CC="$CC" \
                                              LDFLAGS="$LDFLAGS" \
