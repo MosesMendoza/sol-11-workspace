@@ -1,0 +1,28 @@
+
+  ldconfig - update known shared libraries
+
+    $ ldconfig
+
+  ldd - list dynamic dependencies of an executable or a shared object
+
+    $ ldd /opt/puppet/bin/augtool # Looks in /etc/ld.so.conf
+
+  file - show a file's type, architecture it was compiled for, if its executable, etc
+
+    $ file /opt/puppet/bin/augtool
+
+  nm - list all the symbols that exist in an object file
+
+    $ nm /opt/puppet/lib/libaugeas.so
+
+  objdump - display information about object files
+
+    $ objdump /opt/puppet/lib/libaugeas.so
+
+  ar - The archiver. Show/extract the contents of an archive file (archive file contains shared object files)
+
+    $ ar -t /opt/puppet/lib/libaugeas.a # show contents of libaugeas.a
+
+    $ ar -x /opt/puppet/lib/libaugeas.a # extract the object files in libaugeas.a
+
+
