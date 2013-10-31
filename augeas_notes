@@ -1,0 +1,11 @@
+Per http://docs.puppetlabs.com/pe/latest/install_system_requirements.html, we require libgcc_s.so.1 on solaris.
+
+This is likely because of augeas. It appears solaris 11 ships with gcc 3 by default, as /usr/sfw/lib/ibgcc_s.so.1
+
+The cross-compiling system is using GCC 4.5.4, so we can either
+
+1) see if the default libgcc_s.so.1 works with augeas built with GCC 4.5.4. To do this, we'll have to add an rpath of /usr/sfw/lib to augeas
+  to have it search that path.
+
+2) require libgcc_s.so.1 from gcc-45, e.g. requiring gcc-45 runtime instead of "SUNWgccruntime" which will be solaris 10-specific anyway
+

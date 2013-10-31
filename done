@@ -1,0 +1,6 @@
+set up zone as pebuildtest0
+
+set up repo as standard oracle repo
+
+determined from http://docs.puppetlabs.com/pe/latest/install_system_requirements.html that libgcc_s.so.1 is a requirement (augeas?) e.g. gccruntime
+
