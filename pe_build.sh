@@ -1,13 +1,15 @@
 BASEDIR="${HOME}/pe"
 PREFIX="/opt/puppet"
 PATH="/opt/gcc-sparc/bin:/usr/local/bin:${PATH}"
+SFWLIBS="/usr/sfw/lib"
 CROSSGCCLIBS="/opt/gcc-sparc/sparc-sun-solaris2.11/lib"
 
 CC="/opt/gcc-sparc/bin/sparc-sun-solaris2.11-gcc"
 CFLAGS="-I${PREFIX}/include"
 LDFLAGS="-L${CROSSGCCLIBS} \
          -Wl,-rpath-link,${CROSSGCCLIBS} \
-         -Wl,-rpath,${PREFIX}/lib"
+         -Wl,-rpath,${PREFIX}/lib \
+         -Wl,-rpath,${SFWLIBS}"
 
 export LDFLAGS PREFIX PATH CFLAGS CC
 
