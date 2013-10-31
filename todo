@@ -1,10 +1,20 @@
 
-Explore tools to introspect binaries and libraries
+#Explore tools to introspect binaries and libraries
 
 Explore creating a sol11 zone on mundilfari for testing libraries and binaries
 
 Explore tools ( how do I introspect libraries and binaries? )
 
-Look at script - how does changing includes, etc affect the results of the above tool exploration?
+1 look at zone, get IP up, see if can work externally
+
+2 get augeas to zone, see if works
+
+3 if no work, fix
+
+4 if works, begin looking at ent-dist work
+  * move to solaris 11 sources file
+  * automation for manifest erb
+  * local/global transforms?
+  * fork at tar ball, and package from tarball
 
 
